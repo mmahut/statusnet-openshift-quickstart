@@ -1,0 +1,36 @@
+#!/bin/bash
+# This deploy hook gets executed after dependencies are resolved and the
+# build hook has been run but before the application has been started back
+# up again.  This script gets executed directly, so it could be python, php,
+# ruby, etc.
+
+if [ -z $OPENSHIFT_MYSQL_DB_HOST ]
+then
+    echo 1>&2
+    echo "Could not find mysql database.  Please run:" 1>&2
+    echo "rhc cartridge add -a $OPENSHIFT_APP_NAME -c mysql-5.1" 1>&2
+    echo "then make a sample commit (add whitespace somewhere) and re-push" 1>&2
+    echo 1>&2
+    exit 5
+fi
+
+# Confirm database exists, if not create it
+if ! /usr/bin/mysql -u "$OPENSHIFT_MYSQL_DB_USERNAME" --password="$OPENSHIFT_MYSQL_DB_PASSWORD" -h "$OPENSHIFT_MYSQL_DB_HOST" -e "show tables;" statusnet > /dev/null 2>&1
+then
+    echo
+    echo "Database not found!  Creating and importing"
+    echo
+    /usr/bin/mysqladmin -u "$OPENSHIFT_MYSQL_DB_USERNAME" --password="$OPENSHIFT_MYSQL_DB_PASSWORD" -h "$OPENSHIFT_MYSQL_DB_HOST" create "statusnet" 
+    /usr/bin/mysql -u "$OPENSHIFT_MYSQL_DB_USERNAME" --password="$OPENSHIFT_MYSQL_DB_PASSWORD" -h "$OPENSHIFT_MYSQL_DB_HOST" statusnet < "$OPENSHIFT_REPO_DIR/.openshift/action_hooks/openshift.sql"
+    echo
+    echo "done."
+    echo "========================================================"
+    echo "  Login URL: http://$OPENSHIFT_APP_DNS/"
+    echo "  Statusnet login: Admin"
+    echo "  Statusnet password: OpenShiftAdmin"
+    echo "  Don't forget to change your admin password right away!"
+    echo "========================================================"
+else
+    echo "Database found, skipping build"
+fi
+

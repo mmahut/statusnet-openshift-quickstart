@@ -1,7 +1,7 @@
-Status on OpenShift
-===================
+Statusnet on OpenShift
+======================
 
-This quickstart will help you get Statusnet up and running on Openwhift.
+This quickstart will help you get Statusnet up and running on Openshift.
 
 Running on OpenShift
 ---------------------
