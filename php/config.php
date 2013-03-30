@@ -13,3 +13,5 @@ $config['db']['type'] = 'mysql';
 $config['site']['profile'] = 'private';
 
 $config['site']['fancy'] = true;
+
+$config['site']['logfile'] = $_ENV['OPENSHIFT_PHP_LOG_DIR'] . '/statusnet.log';
