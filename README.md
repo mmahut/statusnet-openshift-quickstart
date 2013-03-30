@@ -30,3 +30,22 @@ Running on OpenShift
 
 	Login: Admin
 	Password: OpenShiftAdmin
+
+Integrate with Twitter
+----------------------
+
+1) Create yourself a new application at http://dev.twitter.com/apps/ and set the callback
+URL to http://statusnet-$username.rhcloud.com/index.php/twitter/authorization, also set
+the access read and write in the application settings.
+
+2) Add the following to your config.php with your application consumer secrets
+
+	addPlugin('TwitterBridge');
+	$config['twitter']['enabled'] = true;
+	$config['twitterimport']['enabled'] = true;
+	$config['admin']['panels'][] = 'twitter';
+	$config['twitter']['consumer_key'] = 'TLRBX1Ucf8UzYrjYqw';
+	$config['twitter']['consumer_secret'] = 'LziE2TX6yEZaqaH2hcHypX99WYuOpQC7yFM';
+
+3) Login into your statusnet and go to Settings -> Twitter. Connect your account and choose
+your Preferences.
