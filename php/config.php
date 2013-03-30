@@ -15,3 +15,7 @@ $config['site']['profile'] = 'private';
 $config['site']['fancy'] = true;
 
 $config['site']['logfile'] = $_ENV['OPENSHIFT_PHP_LOG_DIR'] . '/statusnet.log';
+
+$config['attachments']['dir'] = $_ENV['OPENSHIFT_DATA_DIR'] . '/attachments';
+
+$config['avatar']['path'] = $_ENV['OPENSHIFT_DATA_DIR'] . '/avatar';
