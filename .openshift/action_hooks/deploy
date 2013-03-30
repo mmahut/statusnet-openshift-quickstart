@@ -34,3 +34,6 @@ else
     echo "Database found, skipping build"
 fi
 
+if [[ ! -e $OPENSHIFT_DATA_DIR/attachments ]]; then mkdir -p $OPENSHIFT_DATA_DIR/attachments; fi
+if [[ ! -e $OPENSHIFT_DATA_DIR/avatars ]]; then mkdir -p $OPENSHIFT_DATA_DIR/avatars; fi
+if [[ ! -e $OPENSHIFT_DATA_DIR/backgrounds ]]; then mkdir -p $OPENSHIFT_DATA_DIR/backgrounds; fi

@@ -18,6 +18,6 @@ $config['site']['logfile'] = $_ENV['OPENSHIFT_PHP_LOG_DIR'] . '/statusnet.log';
 
 $config['attachments']['dir'] = $_ENV['OPENSHIFT_DATA_DIR'] . '/attachments';
 
-$config['avatar']['path'] = $_ENV['OPENSHIFT_DATA_DIR'] . '/avatar';
+$config['avatar']['path'] = $_ENV['OPENSHIFT_DATA_DIR'] . '/avatars';
 
-$config['background']['path'] = $_ENV['OPENSHIFT_DATA_DIR'] . '/background';
+$config['background']['path'] = $_ENV['OPENSHIFT_DATA_DIR'] . '/backgrounds';
